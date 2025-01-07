@@ -36,3 +36,8 @@ ggplot(filtered_data, aes(x = factor(Year), y = Value_of_Property_Stolen, fill =
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  # Rotate x-axis labels
   scale_y_continuous(labels = scales::comma_format(),  # Format y-axis with commas
                      limits = c(0, max(filtered_data$Value_of_Property_Stolen, na.rm = TRUE) * 1.1))  # Adjust 
+# Perform the Wilcoxon Rank-Sum Test (Mann-Whitney U Test) to compare the distributions
+wilcox_result <- wilcox.test(Value_of_Property_Stolen ~ Year, data = filtered_data)
+
+# Print the Wilcoxon test result
+print(wilcox_result)
