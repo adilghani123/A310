@@ -7,3 +7,14 @@ data <- read.csv("10_Property_stolen_and_recovered.csv")
 # Filter data for 2001 and 2010
 filtered_data <- data %>%
   filter(Year %in% c(2001, 2010))
+# Boxplot: Compare the distribution of property stolen in 2001 and 2010
+ggplot(filtered_data, aes(x = factor(Year), y = Value_of_Property_Stolen, fill = factor(Year))) +
+  geom_boxplot() +
+  labs(
+    title = "Box Plot of Property Stolen (2001 vs 2010)",
+    x = "Year", 
+    y = "Value of Property Stolen"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  # Rotate x-axis labels
+  scale_y_continuous(labels = scales::comma_format())  # Format y-axis with commas
