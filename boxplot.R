@@ -24,3 +24,15 @@ mean_values <- filtered_data %>%
   summarise(mean_value_stolen = mean(Value_of_Property_Stolen, na.rm = TRUE))
 # Print the mean values for 2001 and 2010
 print(mean_values)
+# Boxplot: Compare the distribution of property stolen between 2001 and 2010 with precise y-axis
+ggplot(filtered_data, aes(x = factor(Year), y = Value_of_Property_Stolen, fill = factor(Year))) +
+  geom_boxplot() +
+  labs(
+    title = "Box Plot of Property Stolen (2001 vs 2010)",
+    x = "Year", 
+    y = "Value of Property Stolen"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  # Rotate x-axis labels
+  scale_y_continuous(labels = scales::comma_format(),  # Format y-axis with commas
+                     limits = c(0, max(filtered_data$Value_of_Property_Stolen, na.rm = TRUE) * 1.1))  # Adjust 
