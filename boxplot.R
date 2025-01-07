@@ -18,3 +18,7 @@ ggplot(filtered_data, aes(x = factor(Year), y = Value_of_Property_Stolen, fill =
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  # Rotate x-axis labels
   scale_y_continuous(labels = scales::comma_format())  # Format y-axis with commas
+# Calculate the mean of property stolen for each year
+mean_values <- filtered_data %>%
+  group_by(Year) %>%
+  summarise(mean_value_stolen = mean(Value_of_Property_Stolen, na.rm = TRUE))
