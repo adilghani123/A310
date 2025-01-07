@@ -22,3 +22,5 @@ ggplot(filtered_data, aes(x = factor(Year), y = Value_of_Property_Stolen, fill =
 mean_values <- filtered_data %>%
   group_by(Year) %>%
   summarise(mean_value_stolen = mean(Value_of_Property_Stolen, na.rm = TRUE))
+# Print the mean values for 2001 and 2010
+print(mean_values)
